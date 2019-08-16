@@ -1,6 +1,6 @@
 //
-//  Loca.swift
-//  PTV
+//  Localization.swift
+//  {{cookiecutter.projectName}}
 //
 //  Created by Automated on {% now 'utc', '%d/%m/%Y' %}.
 //  Copyright © {% now 'utc', '%Y' %} {{cookiecutter.companyName}}. All rights reserved.

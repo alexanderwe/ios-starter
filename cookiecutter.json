@@ -1,11 +1,11 @@
 {
   "projectName": "Example",
   "projectDirectory": "{{cookiecutter.projectName|lower|replace(' ', '-')}}-ios",
-  "teamId": "123456",
-  "teamName": "Your Team Name",
-  "companyName": "Your company name",
+  "teamId": "TeamID",
+  "teamName": "TeamName",
+  "companyName": "CompanyName",
   "bundleIdentifier": "com.example.{{cookiecutter.projectName|lower|replace(' ', '-')}}",
-  "deploymentTarget": "12.0",
+  "deploymentTarget": "12.4",
   "runCocoaPods": "y",
   "runXcodeGen": "y"
 }

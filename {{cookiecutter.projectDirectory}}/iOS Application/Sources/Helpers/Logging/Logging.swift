@@ -15,11 +15,11 @@ extension OSLogType: CustomStringConvertible {
         case OSLogType.info:
             return "ℹ️(info)"
         case OSLogType.debug:
-            return "🔹(debug)"
+            return "🐛(debug)"
         case OSLogType.error:
             return "‼️(error)"
         case OSLogType.fault:
-            return "💣(fault)"
+            return "🧨(fault)"
         default:
             return "DEFAULT"
         }

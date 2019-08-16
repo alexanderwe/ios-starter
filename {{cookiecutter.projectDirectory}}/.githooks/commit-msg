@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Directory of the hooks
+hookDir=$(dirname $0)
+
+# Specify the hooks you want to run during
+# the commit-msg process:
+$hookDir/verify_conventional_commit "$1"

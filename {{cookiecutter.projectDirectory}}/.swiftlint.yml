@@ -1,5 +1,3 @@
-# Based on https://github.com/Lickability/swift-best-practices/blob/master/.swiftlint.yml
-
 disabled_rules: # rule identifiers to exclude from running
   # Rationale: Xcode auto indentation can cause this warning
   # https://github.com/realm/SwiftLint/blob/master/Rules.md#closure-end-indentation

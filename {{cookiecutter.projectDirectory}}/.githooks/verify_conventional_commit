@@ -5,13 +5,15 @@ def main():
     # example:
     # feat(apikey): added the ability to add api key to configuration
     try:
-        pattern = r'(build|ci|docs|feat|fix|perf|refactor|style|test|chore|revert)(\([\w\-]+\))?:\s.*'
+        pattern = r'(fix|feat|chore|docs|style|refactor|perf|test|ci)(\([\w\-]+\))?:\s.*'
+        filename = sys.argv[1]
+        ss = open(filename, 'r').read()
         m = re.match(pattern, ss)
         if m == None:
-            raise Exception("conventional commit validation failed") 
+            raise Exception("conventional commit validation failed")
     except Exception as e:
         print(e)
-        exit(1)
+        exit(1)         
 
 if __name__ == "__main__":
     main()

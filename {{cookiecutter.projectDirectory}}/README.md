@@ -3,7 +3,8 @@
 ## Setup
 
 - Fill the README
-- Move `R.generated.swift` to `Sources` and untick `Copy items if needed`
+- Initially build the project
+- Add `R.generated.swift` from `Sources` to the project and untick `Copy items if needed`
 - Delete this TODO section. (And enjoy your fresh and clean Project-setup 🙌)
 
 ---

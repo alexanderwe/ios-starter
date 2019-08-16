@@ -1,24 +1,29 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target '{{cookiecutter.projectName}}' do
+target 'iOS Application' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for {{cookiecutter.projectName}}
+  # Pods for iOS Application
+  
+  # Async
+  pod 'PromiseKit'
   
   # Code Quality
   pod 'SwiftLint'
 
   # Helpers
   pod 'R.swift'
+  pod 'IQKeyboardManagerSwift'
+  pod 'SwiftDate'
 
-  target '{{cookiecutter.projectName}}Tests' do
+  target 'iOS Application Tests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target '{{cookiecutter.projectName}}UITests' do
+  target 'iOS Application UI Tests' do
     inherit! :search_paths
     # Pods for testing
   end

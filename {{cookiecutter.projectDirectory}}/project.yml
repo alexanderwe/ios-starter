@@ -1,96 +1,68 @@
 name: {{cookiecutter.projectName}}
 options:
-  xcodeVersion: 10.3
+  xcodeVersion: 10.4
   minimumXcodeGenVersion: 2.6.0
-configs:
-  Debug-live: debug
-  Debug-dev: debug
-  Debug-staging: debug
-  Release-live: release
-  Release-dev: release
-  Release-staging: release
 settings:
   base:
     DEVELOPMENT_TEAM: {{cookiecutter.teamId}}
-    SWIFT_VERSION: "5.0"
-attributes:
-  ORGANIZATIONNAME: {{cookiecutter.teamName}}
+    SWIFT_VERSION: "5.0"  
 targets:
-  {{cookiecutter.projectName}}:
+  iOS Application:
     type: application
     platform: iOS
-    deploymentTarget: "{{cookiecutter.deploymentTarget}}"
-    scheme:
-      configVariants:
-        - live
-        - dev
-        - staging
+    deploymentTarget: {{cookiecutter.deploymentTarget}}
+    scheme: {}
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: {{cookiecutter.bundleIdentifier}}$(BUILD_VERION_SUFFIX)
-      configs:
-        Debug-live:
-          BUILD_VERION_SUFFIX: ""
-        Debug-dev:
-          BUILD_VERION_SUFFIX: "-dev"
-        Debug-staging:
-          BUILD_VERION_SUFFIX: "-staging"
-        Release-live:
-          BUILD_VERION_SUFFIX: ""
-          SWIFT_COMPILATION_MODE: wholemodule
-        Release-dev:
-          BUILD_VERION_SUFFIX: "-dev"
-          SWIFT_COMPILATION_MODE: wholemodule
-        Release-staging:
-          BUILD_VERION_SUFFIX: "-staging"
-          SWIFT_COMPILATION_MODE: wholemodule
+        PRODUCT_BUNDLE_IDENTIFIER: {{cookiecutter.bundleIdentifier}}
     info:
-      path: {{cookiecutter.projectName}}/SupportingFiles/Info.plist
+      path: iOS Application/SupportingFiles/Info.plist
       properties:
-        CFBundleDisplayName: {{cookiecutter.projectName}}$(BUILD_VERION_SUFFIX)
+        CFBundleDisplayName: {{cookiecutter.projectName}}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
         UIRequiresFullScreen: YES
         UILaunchStoryboardName: LaunchScreen
+        UIMainStoryboardFile: Main
         UIRequiredDeviceCapabilities: [armv7]
         ITSAppUsesNonExemptEncryption: NO
         LSRequiresIPhoneOS: YES
-        _Configuration: $(CONFIGURATION)
-    sources: 
-      - {{cookiecutter.projectName}}
+        _Configuration: $(CONFIGURATION)  
+    sources:
+      - iOS Application/
     preBuildScripts:
       - script: |
-                "$PODS_ROOT/R.swift/rswift" generate "$SRCROOT/{{cookiecutter.projectName}}/Sources/R.generated.swift"
+                "$PODS_ROOT/R.swift/rswift" generate "$SRCROOT/iOS Application/Sources/R.generated.swift"
         name: R.Swift generate
         inputFiles: 
           - $(TEMP_DIR)/rswift-lastrun
         outputFiles:
-          - $(SRCROOT)/{{cookiecutter.projectName}}/Sources/R.generated.swift
+          - $(SRCROOT)/iOS Application/Sources/R.generated.swift
     postCompileScripts:
       - script: |
                 ${PODS_ROOT}/SwiftLint/swiftlint
-        name: SwiftLint
-  {{cookiecutter.projectName}}Tests:
+        name: SwiftLint  
+  iOS Application Tests:
     platform: iOS
     type: bundle.unit-test
     sources:
-      - {{cookiecutter.projectName}}Tests/
+      - iOS Application Tests/
     dependencies:
-      - target: {{cookiecutter.projectName}}
+      - target: iOS Application
     scheme:
       testTargets:
-        - {{cookiecutter.projectName}}Tests
+        - iOS Application Tests
       gatherCoverageData: true   
-  {{cookiecutter.projectName}}UITests:
+  iOS Application UI Tests:
     platform: iOS
     type: bundle.ui-testing
     sources:
-      - {{cookiecutter.projectName}}UITests/
+      - iOS Application UI Tests/
     dependencies:
-      - target: {{cookiecutter.projectName}}
+      - target: iOS Application
     scheme:
       testTargets:
-        - {{cookiecutter.projectName}}UITests
-      gatherCoverageData: true       
+        - iOS Application UI Tests
+      gatherCoverageData: true          
