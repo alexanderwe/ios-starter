@@ -31,7 +31,7 @@ brew install xcodegen
 ## Included external libraries
 
 - Handle asynchronous code
-- [PromiseKit](https://github.com/mxcl/PromiseKit) - Avoid the Callback Hell
+  - [PromiseKit](https://github.com/mxcl/PromiseKit) - Avoid the Callback Hell
 - Code Style
   - [SwiftLint](https://www.github.com/realm/SwiftLint) - Common linting rules
 - Helpers
@@ -41,7 +41,7 @@ brew install xcodegen
 
 ## Structure
 
-The structure of the project tries to follow the idea in [this article](https://theswiftdev.com/2016/07/06/conventions-for-xcode/) from `The.Swift.Dev`
+The structure of the template project tries to follow the idea in [this article](https://theswiftdev.com/2016/07/06/conventions-for-xcode/) from `The.Swift.Dev`
 
 ## Git Hooks
 
