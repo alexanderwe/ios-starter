@@ -4,7 +4,7 @@
 
 - Fill the README
 - Initially build the project
-- Add `R.generated.swift` from `Sources` to the project and untick `Copy items if needed`
+- Add `R.generated.swift` from `iOSApplication/Sources/Generated` to the project and untick `Copy items if needed`
 - Delete this TODO section. (And enjoy your fresh and clean Project-setup 🙌)
 
 ---
@@ -13,7 +13,7 @@
 
 ---
 
-⚡️ Swift: x.x 📱 iOS {{cookiecutter.deploymentTarget}}
+⚡️ Swift: 5.1 📱 iOS {{cookiecutter.deploymentTarget}}
 
 ---
 
@@ -29,6 +29,6 @@ TODO
 
 Where do I find API docs, wireframes, etc.?
 
-## Bitrise
+## CI/CD
 
-Is Bitrise CI setup?
+Is Bamboo set up ?

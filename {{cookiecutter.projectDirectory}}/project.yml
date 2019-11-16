@@ -1,68 +1,177 @@
 name: {{cookiecutter.projectName}}
 options:
-  xcodeVersion: 10.4
-  minimumXcodeGenVersion: 2.6.0
+  xcodeVersion: 11.0
+configs:
+  Debug: debug
+  Release: release
 settings:
   base:
     DEVELOPMENT_TEAM: {{cookiecutter.teamId}}
-    SWIFT_VERSION: "5.0"  
+    SWIFT_VERSION: "5.1"
+  configs:
+    Debug:
+      SWIFT_COMPILATION_MODE: "incremental"
+    Release:
+      SWIFT_COMPILATION_MODE: "wholemodule"
+attributes:
+  ORGANIZATIONNAME: {{cookiecutter.teamName}}
+packages:
+  PromiseKit:
+    url: https://github.com/mxcl/PromiseKit
+    version: "6.10.0"
+  SwiftDate:
+    url: https://github.com/malcommac/SwiftDate
+    version: "6.1.0"  
+  IQKeyboardManagerSwift:
+    url: https://github.com/hackiftekhar/IQKeyboardManager
+    version: "6.5.0" 
+  Rswift:
+    url: https://github.com/mac-cain13/R.swift.Library
+    version: "5.1.0"  
 targets:
-  iOS Application:
+  iOSApplication:
     type: application
     platform: iOS
-    deploymentTarget: {{cookiecutter.deploymentTarget}}
-    scheme: {}
+    deploymentTarget: "{{cookiecutter.deploymentTarget}}"
+    configFiles:
+      Debug: iOSApplication/SupportingFiles/Config/Configuration.xcconfig
+      Release: iOSApplication/SupportingFiles/Config/Configuration.xcconfig
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: {{cookiecutter.bundleIdentifier}}
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon$(SERVER_ENVIRONMENT_SUFFIX)
     info:
-      path: iOS Application/SupportingFiles/Info.plist
+      path: iOSApplication/SupportingFiles/Info.plist
       properties:
-        CFBundleDisplayName: {{cookiecutter.projectName}}
+        CFBundleDisplayName: {{cookiecutter.projectName}}$(SERVER_ENVIRONMENT_SUFFIX)
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
-        UIRequiresFullScreen: YES
         UILaunchStoryboardName: LaunchScreen
         UIMainStoryboardFile: Main
         UIRequiredDeviceCapabilities: [armv7]
         ITSAppUsesNonExemptEncryption: NO
         LSRequiresIPhoneOS: YES
-        _Configuration: $(CONFIGURATION)  
-    sources:
-      - iOS Application/
+        _Configuration: $(CONFIGURATION)
+        _ServerEnvironment: $(SERVER_ENVIRONMENT)
+        CFBundleVersion: "1"
+        CFBundleShortVersionString: "0.0.1"
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: NO
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: "Default Configuration"
+                UISceneDelegateClassName: "$(PRODUCT_MODULE_NAME).SceneDelegate"
+                UISceneStoryboardFile: "Main"
+    sources: 
+      - iOSApplication/
+    dependencies:
+      - target: {{cookiecutter.projectName}}Kit
+      - package: PromiseKit
+      - package: SwiftDate
+      - package: IQKeyboardManagerSwift
+      - package: Rswift
     preBuildScripts:
       - script: |
-                "$PODS_ROOT/R.swift/rswift" generate "$SRCROOT/iOS Application/Sources/R.generated.swift"
+                if mint list | grep -q 'R.swift'; then
+                  mint run R.swift rswift generate "$SRCROOT/iOSApplication/Sources/Generated/R.generated.swift"
+                else
+                  echo "error: R.swift not installed; run 'mint bootstrap' to install"
+                  return -1
+                fi
         name: R.Swift generate
         inputFiles: 
           - $(TEMP_DIR)/rswift-lastrun
         outputFiles:
-          - $(SRCROOT)/iOS Application/Sources/R.generated.swift
+          - $(SRCROOT)/iOSApplication/Sources/Generated/R.generated.swift
     postCompileScripts:
       - script: |
-                ${PODS_ROOT}/SwiftLint/swiftlint
-        name: SwiftLint  
-  iOS Application Tests:
+                mint run swiftlint
+        name: SwiftLint
+  {{cookiecutter.projectName}}Kit:
+    type: framework
+    platform: iOS
+    deploymentTarget: "{{cookiecutter.deploymentTarget}}"
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: {{cookiecutter.bundleIdentifier}}Kit
+    info:
+      path: {{cookiecutter.projectName}}Kit/SupportingFiles/Info.plist
+      properties:
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+    sources: 
+      - {{cookiecutter.projectName}}Kit
+    dependencies:
+      - package: PromiseKit
+  iOSApplicationTests:
     platform: iOS
     type: bundle.unit-test
     sources:
-      - iOS Application Tests/
+      - iOSApplicationTests/
     dependencies:
-      - target: iOS Application
+      - target: iOSApplication
+      - target: {{cookiecutter.projectName}}Kit
     scheme:
       testTargets:
-        - iOS Application Tests
+        - iOSApplicationTests
       gatherCoverageData: true   
-  iOS Application UI Tests:
+  iOSApplicationUITests:
     platform: iOS
     type: bundle.ui-testing
     sources:
-      - iOS Application UI Tests/
+      - iOSApplicationUITests/
     dependencies:
-      - target: iOS Application
+      - target: iOSApplication
+      - target: {{cookiecutter.projectName}}Kit
     scheme:
       testTargets:
-        - iOS Application UI Tests
-      gatherCoverageData: true          
+        - iOSApplicationUITests
+      gatherCoverageData: true      
+schemes:
+  iOS Application development:
+    build:
+      preActions:
+        - script: |
+            cp -f "${PROJECT_DIR}/iOSApplication/SupportingFiles/Config/Development.xcconfig" "${PROJECT_DIR}/iOSApplication/SupportingFiles/Config/Configuration.xcconfig"
+          settingsTarget: iOSApplication
+      targets:
+        iOSApplication: all
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Release
+    archive:
+      config: Release
+  iOS Application staging:
+    build:
+      preActions:
+        - script: |
+            cp -f "${PROJECT_DIR}/iOSApplication/SupportingFiles/Config/Staging.xcconfig" "${PROJECT_DIR}/iOSApplication/SupportingFiles/Config/Configuration.xcconfig" 
+          settingsTarget: iOSApplication
+      targets:
+        iOSApplication: all
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Release
+    archive:
+      config: Release
+  iOS Application production:
+    build:
+      preActions:
+        - script: |
+            cp -f "${PROJECT_DIR}/iOSApplication/SupportingFiles/Config/Production.xcconfig" "${PROJECT_DIR}/iOSApplication/SupportingFiles/Config/Configuration.xcconfig" 
+          settingsTarget: iOSApplication
+      targets:
+        iOSApplication: all
+    run:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Release
+    archive:
+      config: Release

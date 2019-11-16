@@ -2,10 +2,13 @@
 import re, sys, os
 
 def main():
-    # example:
-    # feat(apikey): added the ability to add api key to configuration
+    # examples:
+    # feat(login): added the ability to log in, into the application
+    # feat(login/XXX-123): Login button implementation
+    # fix(XXX-123): Fix bug in login mechanism
+    # chore: Add file
     try:
-        pattern = r'(fix|feat|chore|docs|style|refactor|perf|test|ci)(\([\w\-]+\))?:\s.*'
+        pattern = r'(feat|fix|docs|style|refactor|perf|test|chore|revert)(\(\S+\))?:\s.*'
         filename = sys.argv[1]
         ss = open(filename, 'r').read()
         m = re.match(pattern, ss)
@@ -13,6 +16,7 @@ def main():
             raise Exception("conventional commit validation failed")
     except Exception as e:
         print(e)
+        print("Examples: \nfeat(login): added the ability to log in\nfeat(login/XXX-123): Login button implementation\nfix(XXX-123): Fix bug in login mechanism\nchore: Add file")
         exit(1)         
 
 if __name__ == "__main__":

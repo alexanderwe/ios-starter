@@ -6,6 +6,10 @@
   "companyName": "CompanyName",
   "bundleIdentifier": "com.example.{{cookiecutter.projectName|lower|replace(' ', '-')}}",
   "deploymentTarget": "12.4",
-  "runCocoaPods": "y",
-  "runXcodeGen": "y"
+  "runMintBootstrap": "y",
+  "runXcodeGen": "y",
+  "gitRepository": "https://github.com/alexanderwe/ios-starter.git",
+  "_copy_without_render": [
+    "*.tpl.md"
+  ]
 }
