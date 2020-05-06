@@ -16,18 +16,12 @@ settings:
 attributes:
   ORGANIZATIONNAME: {{cookiecutter.teamName}}
 packages:
-  PromiseKit:
-    url: https://github.com/mxcl/PromiseKit
-    version: "6.10.0"
-  SwiftDate:
-    url: https://github.com/malcommac/SwiftDate
-    version: "6.1.0"  
-  IQKeyboardManagerSwift:
-    url: https://github.com/hackiftekhar/IQKeyboardManager
-    version: "6.5.0" 
   Rswift:
     url: https://github.com/mac-cain13/R.swift.Library
-    version: "5.1.0"  
+    version: "5.2.0"
+  LoggingKit:
+    url: https://github.com/alexanderwe/LoggingKit
+    version: "1.0.0"  
 targets:
   iOSApplication:
     type: application
@@ -67,9 +61,6 @@ targets:
       - iOSApplication/
     dependencies:
       - target: {{cookiecutter.projectName}}Kit
-      - package: PromiseKit
-      - package: SwiftDate
-      - package: IQKeyboardManagerSwift
       - package: Rswift
     preBuildScripts:
       - script: |
@@ -100,8 +91,19 @@ targets:
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
     sources: 
       - {{cookiecutter.projectName}}Kit
+    dependencies:  
+      - package: LoggingKit  
+  {{cookiecutter.projectName}}KitTests:
+    platform: iOS
+    type: bundle.unit-test
+    sources:
+      - {{cookiecutter.projectName}}KitTests/
     dependencies:
-      - package: PromiseKit
+      - target: {{cookiecutter.projectName}}Kit
+    scheme:
+      testTargets:
+        - {{cookiecutter.projectName}}KitTests
+      gatherCoverageData: true     
   iOSApplicationTests:
     platform: iOS
     type: bundle.unit-test

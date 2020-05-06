@@ -5,7 +5,7 @@
   "teamName": "TeamName",
   "companyName": "CompanyName",
   "bundleIdentifier": "com.example.{{cookiecutter.projectName|lower|replace(' ', '-')}}",
-  "deploymentTarget": "12.4",
+  "deploymentTarget": "13.0",
   "runMintBootstrap": "y",
   "runXcodeGen": "y",
   "gitRepository": "https://github.com/alexanderwe/ios-starter.git",

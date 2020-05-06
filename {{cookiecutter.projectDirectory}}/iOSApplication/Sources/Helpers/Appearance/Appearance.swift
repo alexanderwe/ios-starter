@@ -33,8 +33,5 @@ struct Appearence {
         static let background = UIColor.white
     }
 
-    struct Icons {
-        static let back = UIImage(named: "BackIcon")!
-        static let share = UIImage(named: "ShareIcon")!
-    }
+    struct Icons { }
 }

@@ -12,7 +12,7 @@ import UIKit
 extension String {
     var localized: String {
         let loca = NSLocalizedString(self, comment: "")
-        if loca == "" || loca == self {
+        if loca.isEmpty || loca == self {
             return self
         }
         return loca

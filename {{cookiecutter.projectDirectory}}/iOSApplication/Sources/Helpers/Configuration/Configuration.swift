@@ -29,7 +29,6 @@ enum Configuration {
     }
 }
 
-
 // Usage:
 // Define your values inside the Info.plist file
 // API_BASE_URL: $(BASE_URL) // BASE_URL is the value defined in the .xcconfig files

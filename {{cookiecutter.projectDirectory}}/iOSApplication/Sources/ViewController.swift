@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        logger.info("Kit framework integration works!", logCategory: .default)
+        logger.info("Welcome to your iOS starter project!", logCategory: .default)
         logger.info("Current Server environment is \(try? Configuration.value(for: "_ServerEnvironment") as String)", logCategory: .default)
     }
 }

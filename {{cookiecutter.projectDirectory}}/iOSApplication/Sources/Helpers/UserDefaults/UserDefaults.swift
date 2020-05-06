@@ -63,25 +63,22 @@ extension UserDefaults {
 //     }
 // }
 
+@propertyWrapper
+struct UserDefault<T> {
+   let key: String
+   let wrappedValue: T
 
-//TODO: If Swift 5.1 Gets released enable this
-//
-//@propertyWrapper
-//struct UserDefault<T> {
-//    let key: String
-//    let wrappedValue: T
-//
-//    init(_ key: String, defaultValue: T) {
-//        self.key = key
-//        self.wrappedValue = defaultValue
-//    }
-//
-//    var value: T {
-//        get {
-//            return UserDefaults.standard.object(forKey: key) as? T ?? wrappedValue
-//        }
-//        set {
-//            UserDefaults.standard.set(newValue, forKey: key)
-//        }
-//    }
-//}
+    var value: T {
+       get {
+           return UserDefaults.standard.object(forKey: key) as? T ?? wrappedValue
+       }
+       set {
+           UserDefaults.standard.set(newValue, forKey: key)
+       }
+    }
+
+    init(_ key: String, defaultValue: T) {
+       self.key = key
+       self.wrappedValue = defaultValue
+    }
+}

@@ -1,3 +1,3 @@
 source 'https://rubygems.org' do
-    gem 'fastlane', "2.135.0"
+    gem 'fastlane', "2.144.0"
 end

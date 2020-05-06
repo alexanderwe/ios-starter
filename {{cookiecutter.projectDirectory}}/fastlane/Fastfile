@@ -5,6 +5,9 @@ lane :tests do
   run_tests(project: "{{cookiecutter.projectName}}.xcodeproj",
             devices: ["iPhone 11"],
             scheme: "iOSApplicationTests")
+  run_tests(project: "{{cookiecutter.projectName}}.xcodeproj",
+            devices: ["iPhone 11"],
+            scheme: "{{cookiecutter.projectName}}KitTests")                    
 end
 
 # Beta deployment to testflight
