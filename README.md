@@ -34,7 +34,7 @@ cookiecutter https://github.com/alexanderwe/ios-starter.git
 
 ## Included external libraries
 
-- Handle asynchronous code
+- Logging Helper
   - [LoggingKit](https://github.com/alexanderwe/LoggingKit) - A small micro-framework for logging
 - Code Style
   - [SwiftLint](https://www.github.com/realm/SwiftLint) - Common linting rules
