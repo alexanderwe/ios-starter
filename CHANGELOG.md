@@ -5,18 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1] - 2020-05-12
+
+### Fixed
+
+- Fixed import issue on LoggingKit and log category keypaths
 
 ## [0.5.0] - 2020-05-06
 
-This release removes several files which were a little bit too opinionated. So for example I removed the protocols which were tailored to use the coordinator pattern. I think it's better to keep a template open for every kind of architectural pattern. 
-Additionally I removed third party dependencies which I personally don't use anymore and I also think they were too opinionated as well. 
+This release removes several files which were a little bit too opinionated. So for example I removed the protocols which were tailored to use the coordinator pattern. I think it's better to keep a template open for every kind of architectural pattern.
+Additionally I removed third party dependencies which I personally don't use anymore and I also think they were too opinionated as well.
 
 ### Added
 
 - Separate test target for the `Kit` module
 - [LoggingKit](https://github.com/alexanderwe/LoggingKit) micro framework
 
-### Changed 
+### Changed
 
 - More detailed README
 - Updated dependencies
@@ -30,8 +35,8 @@ Additionally I removed third party dependencies which I personally don't use any
 - Protocols
 - Label views
 
-
 ## [0.4.0] - 2019-11-16
+
 ### Added
 
 - Add Fastlane
