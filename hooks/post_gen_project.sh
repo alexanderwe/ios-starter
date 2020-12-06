@@ -1,22 +1,13 @@
 #! /bin/bash
 
-# Run xcodegen to create .xcodeproj file
-{%- if cookiecutter.runXcodeGen == 'y' %}
-  xcodegen
-{%- endif %}
-
-# Install Mint dependecies
-{%- if cookiecutter.runMintBootstrap == 'y' %}
-  mint bootstrap
-{%- endif %}
-
-# If xcodegen has generated a .xcodeproj file we want to open it
-{%- if cookiecutter.runXcodeGen == 'y' %}
-  xed .
-{%- endif %}
+# Run tuist to create .xcodeproj file
+tuist generate
 
 # Set up git 
 git init
+
+# If tuist has generated a .xcodeproj file we want to open it
+xed .
 
 ## Configure git hooks
 chmod +x ./.githooks/commit-msg

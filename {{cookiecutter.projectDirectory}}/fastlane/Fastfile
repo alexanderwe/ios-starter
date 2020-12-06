@@ -3,22 +3,24 @@ lane :tests do
   desc "Build and test application"
 
   run_tests(project: "{{cookiecutter.projectName}}.xcodeproj",
-            devices: ["iPhone 11"],
-            scheme: "iOSApplicationTests")
+            devices: ["iPhone 12 mini"],
+            scheme: "{{cookiecutter.projectName}} (iOS) Development", 
+            only_testing: ["Tests iOS"]
+          
+  )
   run_tests(project: "{{cookiecutter.projectName}}.xcodeproj",
-            devices: ["iPhone 11"],
-            scheme: "{{cookiecutter.projectName}}KitTests")                    
+            devices: ["iPhone 12 mini"],
+            scheme: "{{cookiecutter.projectName}}Kit"
+  )                    
 end
 
 # Beta deployment to testflight
 lane :beta do
   desc "Build, test and upload a new build to TestFlight"
   
-  rescue => exception
-    on_error(exception)
-  end  
-
-end
+rescue => exception
+  on_error(exception)
+end  
 
 # Release deployment to App Store
 lane :release do

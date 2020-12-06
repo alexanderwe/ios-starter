@@ -1,13 +1,11 @@
 {
   "projectName": "Example",
-  "projectDirectory": "{{cookiecutter.projectName|lower|replace(' ', '-')}}-ios",
+  "projectDirectory": "{{cookiecutter.projectName|lower|replace(' ', '-')}}",
   "teamId": "TeamID",
   "teamName": "TeamName",
   "companyName": "CompanyName",
   "bundleIdentifier": "com.example.{{cookiecutter.projectName|lower|replace(' ', '-')}}",
-  "deploymentTarget": "13.0",
-  "runMintBootstrap": "y",
-  "runXcodeGen": "y",
+  "deploymentTarget": "14.0",
   "gitRepository": "https://github.com/alexanderwe/ios-starter.git",
   "_copy_without_render": [
     "*.tpl.md"
