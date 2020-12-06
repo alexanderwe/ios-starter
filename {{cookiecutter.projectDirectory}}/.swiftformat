@@ -1,0 +1,16 @@
+# format options
+--indent tab
+--tabwidth 4
+
+# Enabled rules
+--rules duplicateImports
+--rules elseOnSameLine
+--rules emptyBraces
+--rules hoistPatternLet
+--rules redundantParens
+
+
+# Disabled rules
+--disable indent #Rationale: Until decided, too many false positives
+--disable redundantType #Rationale: Sometimes it makes the code easier to understand to explicitly declare the type, even if its obvious for the compiler
+--disable redundantReturn #Rationale: Omitting the `return` keyword is a new feature in Swift 5.3. It could be confusing for new developers to omit it

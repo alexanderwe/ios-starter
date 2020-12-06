@@ -4,7 +4,6 @@
 
 - Fill the README
 - Initially build the project
-- Add `R.generated.swift` from `iOSApplication/Sources/Generated` to the project and untick `Copy items if needed`
 - Delete this TODO section. (And enjoy your fresh and clean Project-setup 🙌)
 
 ---
@@ -13,7 +12,7 @@
 
 ---
 
-⚡️ Swift: 5.1 📱 iOS {{cookiecutter.deploymentTarget}}
+⚡️ Swift: 5.3 📱 iOS {{cookiecutter.deploymentTarget}}
 
 ---
 
@@ -31,4 +30,4 @@ Where do I find API docs, wireframes, etc.?
 
 ## CI/CD
 
-Is Bamboo set up ?
+IS Ci/CD set up ?
