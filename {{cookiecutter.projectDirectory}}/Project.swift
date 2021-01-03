@@ -3,7 +3,7 @@ import ProjectDescription
 
 let project = Project.init(
     name: "{{cookiecutter.projectName}}",
-    organizationName: "Kevin Chromik",
+    organizationName: "{{cookiecutter.teamName}}",
     packages: [
         .package(url: "https://github.com/alexanderwe/LoggingKit", .exact("3.0.0")),
     ],
