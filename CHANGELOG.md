@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2020-12-06
+
+### Added
+
+* `tuist` - Offers to configure your project in Swift which is pretty nice. Therefore this template uses `tuist` now 
+* `swiftformat` - Rationale explained in "Removed" section
+
+### Removed
+* `R.swift` - After thinking about it, adding a library that generates type safe assets was too opinionated for a template project, therefore I removed it 
+* `SwiftLint` - `SwiftLint` was removed in favour of `swiftformat` as it offers pretty much the same functionality than `SwiftLint` but it could potentially also format source code
+
 ## [0.5.1] - 2020-05-12
 
 ### Fixed
@@ -70,6 +81,9 @@ Additionally I removed third party dependencies which I personally don't use any
 
 [unreleased]: https://github.com/alexanderwe/ios-starter/compare/v1.0.0...HEAD
 [0.0.1]: https://github.com/alexanderwe/ios-starter/releases/tag/v0.0.1
+[0.5.0]: https://github.com/alexanderwe/ios-starter/releases/tag/v0.5.0
+[0.5.1]: https://github.com/alexanderwe/ios-starter/releases/tag/v0.5.1
+[1.0.0]: https://github.com/alexanderwe/ios-starter/releases/tag/v1.0.0
 
 <!-- keywords to be used
 
